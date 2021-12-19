@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<title>Delete or Update</title>
+<style>
+    body{background-image:url(/static/DashboardBackground.jpeg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;}
+    button{ background-color: #4CAF50; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer; text-align: right;
+}
+  .add{background-color: #4CAF50; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer; text-align: right;
+}
+  a { background-color: #4CAF50; border: none; color: white; padding: 2px 2px; text-decoration: none; margin: 1px 1px; cursor: pointer; text-align: right;
+}
+#decks {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#decks td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#decks tr:nth-child(even){background-color: #f2f2f2;}
+
+#decks tr:hover {background-color: #ddd;}
+
+#decks th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+</style>
+
+<body>
+    <div>
+      <h1 style="text-align: center;">Word list</h1>
+      <h2 style="text-align: center;"><button onclick="window.location.href='/dashboard/{{urladd}}'" style="text-align: center;">Dashboard</button></h2>
+      <table id="decks">
+        <thead>
+            <tr>
+                <th>Deck name</th>
+                <th>Word</th>
+                <th>Meaning</th>
+                <th>CRUD</th>
+    
+            </tr>
+        </thead>
+        {% for i in data %}
+        <tr>
+            <td>{{i[0]}}</td>
+            <td>{{i[1]}}</td>
+            <td>{{i[2]}}</td>
+            <td><a href="/{{urladd}}/crud/{{i[0]}}/update/{{i[1]}}" type="button" >Update</a>
+              <a href="/{{urladd}}/crud/{{i[0]}}/delete/{{i[1]}}" type="button">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+
+  </div>
+</body>
+</html>

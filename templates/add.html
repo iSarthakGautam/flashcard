@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="/static/button_blueBackground.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add a new deck/word</title>
+</head>
+  <h3><a href='/dashboard/{{urladd}}' style="text-align: center;">Dashboard</a></h3>
+  <h1>Add a Word</h1>
+  <form action="/{{urladd}}/crud/add" method="POST" id="create-form">
+    <div>
+      <label>Language</label>
+      <input type="text" name="language" required />
+    </div><br>
+    <div>
+      <label>Word:</label>
+      <input type="text" name="word" required />
+    </div><br>
+    <div>
+      <label>Meaning:</label>
+      <input type="text" name="meaning" required/>
+    </div><br>
+    <div class="submit">
+      </button><input type="submit" value = "Submit" >
+    </div>
+    
+  </form>
+</body>
+</html>

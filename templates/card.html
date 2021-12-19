@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+body{background-image:url(/static/DashboardBackground.jpeg); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;text-align: center;}
+button{ background-color: #4CAF50; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer; text-align: right;}
+input{ background-color: #4CAF50; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer; text-align: right;}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 150px;
+  perspective: 1000px;
+  }
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+}
+
+.flip-card-front {
+  background-color: rgb(114, 170, 170);
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+</style>
+
+<body >
+
+<h1>Flash Card</h1>
+<h3>To see the Meaning Hover over th Card below:</h3>
+<br>
+
+<div class="flip-card" style="margin-left: auto; margin-right: auto;">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <h1><u>Word:</u></h1>
+      <h2><i>{{word}}</i></h2>
+    </div>
+    <div class="flip-card-back">
+      <h1><u>Meaning:</u></h1> 
+      <h2><i>{{meaning}}</i></h2> 
+      
+    </div>
+  </div>
+</div>
+<h2>Review</h2>
+<h4>(Compulsory)</h4>
+<form action="/{{urladd}}/card/{{lang}}" method="POST" id="create-form">
+  <input type="radio" id="Easy" name="Review" value="Easy" required>
+  <label for="Easy">Easy</label>
+  <input type="radio" id="Medium" name="Review" value="Medium">
+  <label for="Medium">Medium</label> 
+  <input type="radio" id="Hard" name="Review" value="Hard">
+  <label for="Hard">Difficult</label><br>
+
+  <input type="submit" value="Next">
+</form>
+<h2>Tired...? Click Dashbord to exit and return to Dashboard</h2>
+<button onclick="document.location='/dashboard/{{urladd}}'">Dashboard</button>
+</body>
+</html>

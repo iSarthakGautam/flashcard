@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head><title>Update Student</title>
+<link rel="stylesheet" href="/static/button_blueBackground.css">
+
+</head>
+<body>
+  <h1>Update Card</h1>
+  <form action="/{{useri}}/crud/{{lang}}/update/{{word}}" method="POST" id="update-form">
+    <div>
+      <label>Deck:</label>
+      <input type="text" name="DECK" value="{{lang}}" disabled />
+    </div>
+    <div>
+      <label>Word:</label>
+      <input type="text" name="cWord" value="{{word}}"required />
+    </div>
+    <div>
+      <label>Meaning:</label>
+      <input type="text" name="cMeaning" value="{{meaning}}">
+    </div>
+    <div>
+      <input type="submit" value = "Submit">
+    </div>
+    </form>
+
+</body>
+</html>

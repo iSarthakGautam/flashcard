@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head><title>Update Student</title>
+<link rel="stylesheet" href="/static/loginstyle.css">
+
+</head>
+<body>
+  <h1>Update Profile</h1>
+  <form action="/profile/update/{{userid}}" method="POST" id="profile-update-form">
+    <div>
+      <label>Username:</label>
+      <input type="text" name="Username" value="{{userid}}" disabled />
+    </div>
+    <div>
+      <label>First Name:</label>
+      <input type="text" name="First_Name" value="{{fn}}"required />
+    </div>
+    <div>
+      <label>Last Name:</label>
+      <input type="text" name="Last_Name" value="{{ln}}">
+    </div>
+    <div>
+      <input type="submit" value = "Submit">
+    </div>
+    </form>
+
+</body>
+</html>

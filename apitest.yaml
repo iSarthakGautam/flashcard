@@ -1,0 +1,453 @@
+openapi: 3.0.0
+info:
+  title: Final Project
+  description: 
+    <div>In this Project, I have gnerated basic restful api's.
+
+    <h3> User Table Schema </h3> 
+    <table>
+      <thead>
+        <th>Column Name</th>
+        <th>Column Type</th>
+        <th>Constraints</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>user_name</td>
+        <td>String</td>
+        <td>Unique,Not Null</td>
+      </tr>
+      <tr>
+        <td>first_name</td>
+        <td>String</td>
+        <td>Not Null</td>
+      </tr>      
+      <tr>
+        <td>last_name</td>
+        <td>String</td>
+        <td></td>
+      </tr>         
+    </tbody>
+    </table>
+
+    <h3> Deck Table Schema </h3> 
+    <table>
+      <thead>
+        <th>Column Name</th>
+        <th>Column Type</th>
+        <th>Constraints</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>word_id</td>
+        <td>Integer</td>
+        <td>Primary Key, Auto Increment</td>
+      </tr>
+      <tr>
+        <td>deck_name</td>
+        <td>String</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>Word</td>
+        <td>String</td>
+        <td>Unique, Not Null</td>
+      </tr>      
+      <tr>
+        <td>Meaning</td>
+        <td>String</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>score</td>
+        <td>Integer</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>user_id</td>
+        <td>string</td>
+        <td>Not Null</td>
+      </tr>  
+    </tbody>
+    </table>
+
+
+
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /api/:
+    description: Login Page
+    get:
+      description: Operation to Get Login page.
+      responses:
+        '200':
+          description: Success
+          
+        '500':
+          description: Internal Server Error
+
+    post:
+      description: Operation to post the username resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: qwe
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    example: qwe
+
+        '409':
+          description: user_name does not  exist
+        '500':
+          description: Internal Server Error
+        
+  /api/signup:
+    description: SignUp Page
+    get:
+      description: Operation to Get SignUp page.
+      
+      responses:
+        '200':
+          description: Success
+          
+        '500':
+          description: Internal Server Error
+  
+    post:
+      description: Operation to post the username resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: qwe
+                first_name:
+                  type: string
+                  example: qwe
+                last_name:
+                  type: string
+                  example: qwe  
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    example: qwe
+                  first_name:
+                    type: string
+                    example: qwe
+                  last_name:
+                    type: string
+                    example: qwe  
+        '409':
+          description: user_name does not  exist
+        '500':
+          description: Internal Server Error
+  
+  /api/dashboard/{username}:
+    description: End point to read, update and delete a course resource with course_id = courseId.
+    get:
+      description: Operation to Read course resource.
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+            example: "qwe"
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Decks
+                type: object
+                properties:
+                  urladd:
+                    type: string
+                    example: "qwe"
+                  data:
+                    type: string
+                    example: "['Language : English Last Reviewed 2021-11-26 Score High', \"...]"
+    
+        '500':
+          description: Internal Server Error
+          
+  /api/word/add/{user_id}:
+    description: Add Page
+    get:
+      description: Operation to Get Add page.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: string
+            example: "qwe"
+      responses:
+        '200':
+          description: Success
+          
+        '500':
+          description: Internal Server Error
+
+   
+  
+  /api/{userid}/card/{lang}:
+    description: Card
+    get:
+      description: Each Card info
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: qwe
+        - in: path
+          name: lang
+          required: true
+          schema:
+            type: string
+            example: English
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Card
+                type: object
+                properties:
+                  urladd:
+                    type: string
+                    example: "qwe"
+                  word:
+                    type: string
+                    example: "Hello"
+                  meaning:
+                    type: string
+                    example: "Greeting"
+                  lang:
+                    type: string
+                    example: "English"  
+    
+        '500':
+          description: Internal Server Error
+             
+   
+  /api/{userid}/crud/delete_update:
+    decription: Delete_or_update table 
+    get:
+      description: Each Card info
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: qwe
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Table for delete and update
+                type: object
+                properties:
+                  urladd:
+                    type: string
+                    example: qwe
+ 
+
+ 
+                  data:
+                    type: string
+                    example: ['English','Hello','greeting','2021-11-27']
+        '404':
+          description: No Resource Found   
+          content:
+            application/json:
+              schema:
+                title: Table for delete and update
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: "No Word/deck Found"
+
+        '500':
+          description: Internal Server Error
+          
+  
+  /api/profile/{userid}:
+    decription: Profile  
+    get:
+      description: Profile
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: qwe
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: Table for delete and update
+                type: object
+                properties:
+                  urladd:
+                    type: string
+                    example: qwe
+ 
+
+ 
+                  data:
+                    type: string
+                    example: ['English','Hello','greeting','2021-11-27']
+          '500':
+            description: Internal Server Error
+
+  /api/{userid}/crud/{lang}/update/{word}:
+    decription: Update Word
+    get:
+      description: Data for prefilled update form
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: qwe
+        - in: path
+          name: lang
+          required: true
+          schema:
+            type: string
+            example: English   
+        - in: path
+          name: word
+          required: true
+          schema:
+            type: string
+            example: Hello
+      responses:
+        '200':
+           description: Request Successful
+           content:
+             application/json:
+               schema:
+                 title: Get 
+                 type: object
+                 properties:
+                    useri:
+                      type: string
+                      example: qwe
+                    lang:
+                      type: string
+                      example: English
+                    word:
+                      type: string
+                      example: Hello 
+                    meaning:
+                      type: string
+                      example: greeting
+                      
+        '500':
+          description: Internal Server Error
+  "/api/{userid}/crud/{lang}/delete/{word}":
+    decription: Delete
+    delete:
+      description: Operation to delete the course resource
+      parameters:
+        - in: path
+          name: userid
+          required: true
+          schema:
+            type: string
+            example: qwe
+        - in: path    
+          name: lang
+          required: true
+          schema:
+            type: string
+            example: English
+        - in: path  
+          name: word
+          required: true
+          schema:
+            type: string
+            example: Hello  
+            
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Word not found
+        '500':
+          description: Intenal Server Error
+   
+
+  /api/profile/update/{user_id}:
+    decription: Update  Profile
+    get:
+      description: Data for prefilled update form
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: string
+            example: qwe
+
+      responses:
+        '200':
+           description: Request Successful
+           content:
+             application/json:
+               schema:
+                 title: Get 
+                 type: object
+                 properties:
+                    user:
+                      type: string
+                      example: qwe
+                    first:
+                      type: string
+                      example: qwe
+                    last:
+                      type: string
+                      example: qwe 
+                      
+        '500':
+          description: Internal Server Error
+  
